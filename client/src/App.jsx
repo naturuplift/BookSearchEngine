@@ -1,25 +1,28 @@
-// import React from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApolloProvider } from '@apollo/client';
-import apolloClient from './apolloClient'; // Ensure this points to your Apollo Client setup file
-
+import { ApolloClient, InMemoryCache, ApolloProvider , createHttpLink } from '@apollo/client';
 import './App.css';
-
+import { setContext } from '@apollo/client/link/context';
+// Import component
 import Navbar from './components/Navbar';
-import SearchBooks from './pages/SearchBooks';
-import SavedBooks from './pages/SavedBooks';
 
+
+const httpLink = createHttpLink({
+  uri: 'http://localhost:3001/graphql',
+});
+
+// instance for Apollo client
+const client = new ApolloClient({
+	link: authLink.concat(httpLink),
+	cache: new InMemoryCache(),
+});
+
+// Construct main GraphQL API endpoint
 function App() {
   return (
-    <ApolloProvider client={apolloClient}>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<SearchBooks />} />
-          <Route path='/saved' element={<SavedBooks />} />
-          <Route path='*' element={<h1 className='display-2'>Wrong page!</h1>} />
-        </Routes>
-      </Router>
+    <ApolloProvider client={client}>
+      <Navbar />
+      <Outlet />
     </ApolloProvider>
   );
 }
