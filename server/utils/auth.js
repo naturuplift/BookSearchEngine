@@ -11,6 +11,8 @@ const expiration = process.env.JWT_EXPIRES_IN;
 module.exports = {
   // function for use as middleware
   authMiddleware: function ({ req }) {
+    //console.log("Query: ", req.query);
+    //console.log("Headers: ", req.headers);
     // allows token to be sent via  req.query or headers
     let token = req.query.token || req.headers.authorization;
 
@@ -30,7 +32,7 @@ module.exports = {
       req.user = data;
     } catch {
       console.log('Invalid token');
-      return res.status(400).json({ message: 'invalid token!' });
+      return res.status(400).json ({ message: 'invalid token!' });
     }
 
     // Return request object

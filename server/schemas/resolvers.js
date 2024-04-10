@@ -16,6 +16,7 @@ const resolvers = {
   Mutation: {
     // Add mutation resolvers
     login: async (parent, { email, password }) => {
+      console.log("Recieved Query: ", email, password);
         const user = await User.findOne({ email });
         if (!user) {
             throw new AuthenticationError('No user found with this email address');
