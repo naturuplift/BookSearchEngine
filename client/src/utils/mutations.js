@@ -22,16 +22,6 @@ export const ADD_USER = gql`
         _id
         username
         email
-        password
-        bookCount
-        savedBooks {
-          bookId
-          authors
-          description
-          title
-          image
-          link
-        }
       }
     }
   }
@@ -62,10 +52,6 @@ export const REMOVE_BOOK = gql`
   mutation removeBook($bookId: ID!) {
     removeBook(bookId: $bookId) {
       _id
-      username
-      email
-      password
-      bookCount
       savedBooks {
         bookId
         authors
