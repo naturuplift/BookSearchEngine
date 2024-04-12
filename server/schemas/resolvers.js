@@ -16,7 +16,9 @@ const resolvers = {
   Mutation: {
     // Add mutation resolvers
     login: async (parent, { email, password }) => {
+
       console.log("Recieved Query: ", email, password);
+      
         const user = await User.findOne({ email });
         if (!user) {
             throw new AuthenticationError('No user found with this email address');
@@ -37,24 +39,28 @@ const resolvers = {
         return { token, user };
     },
     saveBook: async (parent, { input }, context) => {
+
+      // Log the received book input
+      console.log('Received saveBook request:', input);
+
       if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
+        const bookSaved = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { savedBooks: input } },
           { new: true }
-        );
-        return updatedUser;
+        ).populate('savedBooks');
+        return bookSaved;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
     removeBook: async (parent, { bookId }, context) => {
         if (context.user) {
-          const updatedUser = await User.findOneAndUpdate(
+          const removeBook = await User.findOneAndUpdate(
             { _id: context.user._id },
             { $pull: { savedBooks: { bookId } } },
             { new: true }
-          );
-          return updatedUser;
+          ).populate('savedBooks');
+          return removeBook;
         }
         throw new AuthenticationError('You need to be logged in!');
     },
