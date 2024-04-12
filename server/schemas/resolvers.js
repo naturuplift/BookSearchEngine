@@ -17,7 +17,7 @@ const resolvers = {
     // Add mutation resolvers
     login: async (parent, { email, password }) => {
 
-      console.log("Recieved Query: ", email, password);
+      // console.log("Recieved Query: ", email, password);
       
         const user = await User.findOne({ email });
         if (!user) {
@@ -41,7 +41,7 @@ const resolvers = {
     saveBook: async (parent, { input }, context) => {
 
       // Log the received book input
-      console.log('Received saveBook request:', input);
+      // console.log('Received saveBook request:', input);
 
       if (context.user) {
         const bookSaved = await User.findOneAndUpdate(
