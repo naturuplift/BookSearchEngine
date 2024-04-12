@@ -1,15 +1,19 @@
 // see SignupForm.js for comments
 import { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-import { loginUser } from '../utils/API';
+import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 
 const LoginForm = () => {
+  // set initial form state
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  // state for form validation
   const [validated] = useState(false);
+  // state for alert
   const [showAlert, setShowAlert] = useState(false);
-  const [loggedInUser] = useMutation(loginUser);
+  // Apollo Client's useMutation hook for the LOGIN_USER mutation
+  const [login] = useMutation(LOGIN_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -27,15 +31,13 @@ const LoginForm = () => {
     }
 
     try {
-      const response = await loggedInUser(userFormData);
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+      const response = await login({
+        variables: { ...userFormData },
+      });
 
-      const { token, user } = await response.json();
-      console.log(user);
-      Auth.login(token);
+      Auth.login(response.data.login.token);
+
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -51,8 +53,9 @@ const LoginForm = () => {
     <>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          Something went wrong with your login credentials!
+        Invalid login credentials!
         </Alert>
+
         <Form.Group className='mb-3'>
           <Form.Label htmlFor='email'>Email</Form.Label>
           <Form.Control
@@ -78,10 +81,7 @@ const LoginForm = () => {
           />
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
-        <Button
-          disabled={!(userFormData.email && userFormData.password)}
-          type='submit'
-          variant='success'>
+        <Button disabled={!(userFormData.email && userFormData.password)} type='submit' variant='success'>
           Submit
         </Button>
       </Form>

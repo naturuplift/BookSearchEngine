@@ -7,19 +7,14 @@ import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
 // Construct  main GraphQL API endpoint
-const httpLink = createHttpLink({
-  uri: '/graphql',
-});
+const httpLink = createHttpLink({ uri: '/graphql', });
 
 const authLink = setContext((_, { headers }) => {
   // Get authentication token
   const token = localStorage.getItem('id_token');
   // Return headers
   return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
+    headers: { ...headers, authorization: token ? `Bearer ${token}` : '', },
   };
 });
 
@@ -32,12 +27,10 @@ const client = new ApolloClient({
 // Construct main GraphQL API endpoint
 function App() {
   return (
-    <>
       <ApolloProvider client={client}>
         <Navbar />
         <Outlet />
       </ApolloProvider>
-    </>
   );
 }
 
