@@ -88,7 +88,7 @@ npm start
 
 ## Usage
 
-Once the server and client are running by running, you can navigate to `http://localhost:3000/` to search for books:
+Once the server and client are running, you can navigate to `http://localhost:3000/` to search for books:
 
 ![image](https://github.com/naturuplift/BookSearchEngine/assets/23546356/7dd31f3b-7c79-412c-a0fe-59acaae1b93d)
 
@@ -113,10 +113,6 @@ Then navigate to your saved book by selecting on 'See Your Books':
 Click on 'Delete this Book' to remove books from your collection:
 
 ![image](https://github.com/naturuplift/BookSearchEngine/assets/23546356/4ae8c152-d5ad-4e14-a984-c4505d32f6e7)
-
-
-
-
 
 
 ## Starter Code
