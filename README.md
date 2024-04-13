@@ -45,9 +45,7 @@ This project was developed as part of a coding challenge to demonstrate the tran
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Database Models](#database-models)
-- [API Routes](#api-routes)
-- [Structure](#structure)
+- [Starter Code](#starter-code)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -87,6 +85,39 @@ cd client
 npm install
 npm start
 ```
+
+## Usage
+
+Once the server and client are running by running, you can navigate to `http://localhost:3000/` to search for books:
+
+![image](https://github.com/naturuplift/BookSearchEngine/assets/23546356/7dd31f3b-7c79-412c-a0fe-59acaae1b93d)
+
+You can Login or Sign Up to the application:
+
+![image](https://github.com/naturuplift/BookSearchEngine/assets/23546356/84a83085-52f1-458d-97fd-4499d5de7f4b)
+
+![image](https://github.com/naturuplift/BookSearchEngine/assets/23546356/53ae495f-5cef-44c4-87d1-8cca12e2c34e)
+
+You can search for book by entering book query and scroll for results displayed:
+
+![image](https://github.com/naturuplift/BookSearchEngine/assets/23546356/163d8b9c-cdcc-4703-b13b-0ab74f931fb9)
+
+You can save books to your collection when you click on 'Save this Book':
+
+![image](https://github.com/naturuplift/BookSearchEngine/assets/23546356/33cea2f4-896f-4e38-8f79-2145a93357cb)
+
+Then navigate to your saved book by selecting on 'See Your Books':
+
+![image](https://github.com/naturuplift/BookSearchEngine/assets/23546356/a86cb459-d3ba-4c95-85e1-b650806e7bde)
+
+Click on 'Delete this Book' to remove books from your collection:
+
+![image](https://github.com/naturuplift/BookSearchEngine/assets/23546356/4ae8c152-d5ad-4e14-a984-c4505d32f6e7)
+
+
+
+
+
 
 ## Starter Code
 
